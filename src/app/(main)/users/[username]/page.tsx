@@ -76,7 +76,7 @@ interface UserProfileProps{
     loggedInUserId:string,
 }
 
-export async function UserProfile({user , loggedInUserId}:UserProfileProps){
+export  function UserProfile({user , loggedInUserId}:UserProfileProps){
 const followerInfo : FollowerInfo = {
     followers: user._count.followers,
     isFollowedByUser: user.followers.some(
