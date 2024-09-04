@@ -23,7 +23,7 @@ export function getUserDataSelector(loggedInUserId: string) {
       },
     },
   } satisfies Prisma.UserSelect;
-}
+} 
 
 //for userprofile Page
 export type UserData = Prisma.UserGetPayload<{

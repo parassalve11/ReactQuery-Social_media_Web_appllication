@@ -70,7 +70,7 @@ return <main className="flex w-full min-w-0 gap-5">
 
 
 interface UserProfileProps{
-    user:UserData,
+    user:UserData ,
     loggedInUserId:string,
 }
 
