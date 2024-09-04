@@ -1,7 +1,7 @@
 import { validateRequest } from "@/auth";
 import db from "@/lip/db";
 import { FollowerInfo } from "@/lip/types";
-import { error } from "console";
+
 
 export async function GET(
   req: Request,
@@ -42,7 +42,7 @@ export async function GET(
       followers: user._count.followers,
       isFollowedByUser: !!user.followers.length,
     };
-    return data;
+    return Response.json({data})
   } catch (error) {
     console.log(error);
     return Response.json({ error: "Internal Server Error" }, { status: 500 });
