@@ -19,7 +19,7 @@ interface PageProps{
 }
 
 const getUser = cache(async(username:string , loggedInUserId:string) =>{
-    const user  = db.user.findFirst({
+    const user  = await db.user.findFirst({
         where:{
             username:{
                 equals:username,
@@ -35,7 +35,9 @@ const getUser = cache(async(username:string , loggedInUserId:string) =>{
     return user;
 })
 
-export async function getMetaData({params:{username}}:PageProps):Promise<Metadata>{
+export async function generateMetadata({
+    params: { username },
+  }: PageProps): Promise<Metadata>{
 const{user:loggedInUser} = await validateRequest();
 
 if(!loggedInUser) return {}
@@ -56,13 +58,13 @@ if(!loggedInUser){
     </>
 }
 
-const user = await getUser(username , loggedInUser.id);
+const user = await getUser(username, loggedInUser.id);
 
 return <main className="flex w-full min-w-0 gap-5">
 <div className="w-full min-w-0 space-y-5">
  <UserProfile user={user} loggedInUserId={loggedInUser.id} />
  
- <UserPosts userId={user.id} />
+ <UserPosts userId={user.id} /> 
 </div>
 <TrendsSidebar />
 </main>
@@ -70,7 +72,7 @@ return <main className="flex w-full min-w-0 gap-5">
 
 
 interface UserProfileProps{
-    user:UserData ,
+    user:UserData,
     loggedInUserId:string,
 }
 

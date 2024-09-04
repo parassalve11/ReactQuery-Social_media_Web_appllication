@@ -27,8 +27,8 @@ export function getUserDataSelector(loggedInUserId: string) {
 
 //for userprofile Page
 export type UserData = Prisma.UserGetPayload<{
-  select: ReturnType<typeof getUserDataSelector > 
-}>
+  select: ReturnType<typeof getUserDataSelector>;
+}>; 
 
 export function getPostDataInclude(loggedInUserId :string){
     return{
