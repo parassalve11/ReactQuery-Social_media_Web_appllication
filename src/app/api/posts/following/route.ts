@@ -6,12 +6,13 @@ import { NextRequest } from "next/server";
 
 export async function GET(req:NextRequest){
     try {
-        const cursor = req.nextUrl.searchParams.get('cursor') || undefined
-        const {user} = await validateRequest();
+        const cursor = req.nextUrl.searchParams.get("cursor") || undefined;
+        const pageSize =10;
+        const { user } = await validateRequest();
         if(!user){
             return Response.json({error:"Unauthorized."},{status:401})
         }
-        const pageSize =10;
+       
 
         const posts = await db.post.findMany({
             where:{
@@ -33,10 +34,10 @@ export async function GET(req:NextRequest){
 
         const data:PostsPage ={
             posts:posts.slice(0,pageSize),
-            nextCursor
+            nextCursor,
         }
 
-        return Response.json(data);
+        return Response.json({data});
 
     } catch (error) {
         console.log(error);
