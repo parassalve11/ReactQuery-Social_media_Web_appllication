@@ -76,13 +76,13 @@ interface UserProfileProps{
     loggedInUserId:string,
 }
 
-export  function UserProfile({user , loggedInUserId}:UserProfileProps){
-const followerInfo : FollowerInfo = {
-    followers: user._count.followers,
-    isFollowedByUser: user.followers.some(
-        ({followerId})  => followerId === loggedInUserId
-    )
-};
+async function UserProfile({ user, loggedInUserId }: UserProfileProps) {
+    const followerInfo: FollowerInfo = {
+      followers: user._count.followers,
+      isFollowedByUser: user.followers.some(
+        ({ followerId }) => followerId === loggedInUserId,
+      ),
+    };
 
 return(
     <div className="w-full h-fit p-5 rounded-2xl shadow-sm bg-card">
