@@ -37,7 +37,7 @@ export async function GET(req:NextRequest){
             nextCursor,
         }
 
-        return Response.json({data});
+        return Response.json(data);
 
     } catch (error) {
         console.log(error);

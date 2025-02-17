@@ -5,7 +5,7 @@ import { QueryFilters, QueryKey, useMutation, useQueryClient } from "@tanstack/r
 import { Button } from "./ui/button";
 import kyInstance from "@/lip/ky";
 import { useToast } from "./ui/use-toast";
-import { log } from "console";
+
 
 interface FollowButtonProps{
     userId:string,

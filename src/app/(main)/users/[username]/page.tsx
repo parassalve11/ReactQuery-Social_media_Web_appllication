@@ -11,6 +11,7 @@ import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { cache } from "react"
 import UserPosts from "./UserPost"
+import EditProfileButton from "./EditProfileButton"
 
 
 
@@ -107,15 +108,15 @@ return(
                 </div>
             </div>
                {user.id === loggedInUserId? (
-                <Button>Edit Button</Button>
+                <EditProfileButton user={user} />
                ):(
                 <FollowButton userId={user.id} intialState={followerInfo} />
                )}
         </div>
         {user.bio &&
         <>
-        <hr />
-        <p className="whitespace-pre-line break-words overflow-hidden">{user.bio}</p>
+        <hr className="w-full" />
+        <p className="mt-5 whitespace-pre-line break-words overflow-hidden">{user.bio}</p>
         </>
         }
     </div>

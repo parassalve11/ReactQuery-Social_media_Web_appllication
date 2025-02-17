@@ -1,0 +1,43 @@
+/* Blurred background */
+.blur-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(20px);
+  opacity: 0.5;
+  z-index: -1;
+  pointer-events: none; /* Prevent interaction */
+}
+
+/* Images (Mobile size) */
+.media-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  width: 100%; /* Full width on smaller screens */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Videos (Laptop size) */
+.media-video {
+  width: 80%; /* Large size for videos */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: contain;
+  max-height: 100%;
+  z-index: 10; /* Ensure it's above other elements */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .media-image {
+    width: 90%; /* Slightly smaller images on mobile */
+  }
+
+  .media-video {
+    width: 100%; /* Videos take full width on mobile */
+  }
+}

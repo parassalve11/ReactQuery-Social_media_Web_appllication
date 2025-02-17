@@ -8,13 +8,14 @@ import { unstable_cache } from "next/cache";
 import { formatNumber } from "@/lib/utils";
 import FollowButton from "./FollowButton";
 import { getUserDataSelector } from "@/lip/types";
+import UserToolTip from "./UserToolTip";
 
 
 
 
 export default function TrendsSidebar(){
     return(
-        <div className="sticky top-[5.25rem] flex-none space-y-5 h-fit hidden md:block lg:w-80 w-72">
+        <div className="sticky top-[5.25rem] flex-none space-y-5 h-fit hidden md:block  lg:w-80 w-72">
             <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
                 <WhoToFollow />
                 <TrendingTopics />
@@ -49,7 +50,8 @@ async function WhoToFollow(){
             <h1 className="text-xl font-bold">Who to Follow</h1>
             {userToFollow.map((user) =>(
                <div key={user.id} className="flex items-center justify-between gap-3 ">
-                <Link href={`/users/${user.username}`} >
+               <UserToolTip user={user}>
+               <Link href={`/users/${user.username}`} >
                 <div className="flex items-center justify-center gap-3">
                     <UserAvatar avatarUrl={user.avatarUrl} className="flex-none" />
                    <div>
@@ -58,6 +60,7 @@ async function WhoToFollow(){
                    </div>
                 </div>
                 </Link>
+               </UserToolTip>
                <FollowButton 
                userId={user.id}
                intialState={{
@@ -100,11 +103,11 @@ const getTrendingTopics = unstable_cache(
   async function TrendingTopics(){
     const trendingTopics = await getTrendingTopics();
 
-    return <div className='space-y-5 p-5 shadow-sm bg-card rounded-2xl '>
+    return <div className='space-y-5 p-5 shadow-sm bg-card rounded-2xl  '>
         <h1 className="text-2xl font-bold">trending_topics</h1>
         {trendingTopics.map(({hashtag,count}) =>{
             const title = hashtag.split('#')[1];
-            return <Link key={title} href={`/hashtag/${title}`} className="block">
+            return <Link key={title} href={`/hashtag/${title}`} className="block ">
                 <p className="line-clamp-1 break-all font-semibold hover:underline" title={hashtag}>
                     {hashtag}
                 </p>
