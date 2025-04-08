@@ -13,6 +13,7 @@ import { useToast } from "@/components/ui/use-toast";
 interface LikeButtonProps {
   postId: string;
   initialState: LikeInfo;
+  className?:string
 }
 
 export default function LikeButton({ postId, initialState }: LikeButtonProps) {

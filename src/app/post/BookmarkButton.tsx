@@ -13,6 +13,7 @@ import { Bookmark } from "lucide-react";
 interface BookmarkButtonProps {
   postId: string;
   initialState: BookmarkInfo;
+  className?:string
 }
 
 export default function BookmarkButton({
